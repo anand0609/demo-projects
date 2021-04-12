@@ -11,8 +11,10 @@ def read_json(file):
 def find_meaning(key, data):
     if key.lower() in data:
         return data[key.lower()]
-    elif key.lower().capitalize() in data:
+    elif key.lower().capitalize() in data:  # Searching Nouns
         return data[key.lower().capitalize()]
+    elif key.upper() in data:  # Searching upper case Acronyms
+        return data[key.upper()]
     elif len(get_close_matches(key, data.keys())) > 0:
         response = input("Did you mean {} instead? Enter Y if yes, or N if no: ".format(get_close_matches(key, data.keys())[0]))
         if response.upper() == "Y":
